@@ -14,8 +14,28 @@ class CreateListingTable extends Migration
     public function up()
     {
         Schema::create('listing', function (Blueprint $table) {
-            $table->increments('id');
-            $table->timestamps();
+            $table->primary('id');
+            $table->unsignedInteger('id');
+            $table->string('title');
+            $table->string('address');
+            $table->longText('about');
+
+            // Amenities
+            $table->boolean('amenitiy_wifi')->default(false);
+            $table->boolean('amenitiy_pets_allowed')->default(false);
+            $table->boolean('amenitiy_tv')->default(false);
+            $table->boolean('amenitiy_kitchen')->default(false);
+            $table->boolean('amenitiy_breakfast')->default(false);
+            $table->boolean('amenitiy_laptop')->default(false);
+
+            // Prices
+            $table->string('price_per_night')->nullable();
+            $table->string('price_extra_people')->nullable();
+            $table->string('price_weekly_discount')->nullable();
+            $table->string('price_monthly_discount')->nullable();
+
+//            $table->increments('id');
+//            $table->timestamps();
         });
     }
 
