@@ -21,12 +21,12 @@ class CreateListingsTable extends Migration
             $table->longText('about');
 
             // Amenities
-            $table->boolean('amenitiy_wifi')->default(false);
-            $table->boolean('amenitiy_pets_allowed')->default(false);
-            $table->boolean('amenitiy_tv')->default(false);
-            $table->boolean('amenitiy_kitchen')->default(false);
-            $table->boolean('amenitiy_breakfast')->default(false);
-            $table->boolean('amenitiy_laptop')->default(false);
+            $table->boolean('amenity_wifi')->default(false);
+            $table->boolean('amenity_pets_allowed')->default(false);
+            $table->boolean('amenity_tv')->default(false);
+            $table->boolean('amenity_kitchen')->default(false);
+            $table->boolean('amenity_breakfast')->default(false);
+            $table->boolean('amenity_laptop')->default(false);
 
             // Prices
             $table->string('price_per_night')->nullable();
