@@ -21,7 +21,7 @@
     <div class="container">
         <div class="heading">
             <h1>@{{ title }}</h1>
-            <p>@{ address }}</p>
+            <p>@{{ address }}</p>
         </div>
         <hr>
         <div class="about">
