@@ -11,6 +11,14 @@
 |
 */
 
-Route::get('/', function () {
-    return view('app');
+use App\Listing;
+
+//Route::get('/', function () {
+//    return view('app');
+//});
+
+Route::get('/listing/{listing}', function (Listing $listing) {
+    $model = $listing->toArray();
+    // echo $listing->id // will equal 5 for route /listing/5
+    return view('app', [ 'model' => $model ]);
 });
