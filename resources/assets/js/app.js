@@ -7,7 +7,7 @@ let app = new Vue({
         title: sample.title,
         address: sample.address,
         about: sample.about,
-        headerImageStyle:  {
+        headerImageStyle: {
             'background-image': 'url(/images/header.jpg)'
         },
         amenities: sample.amenities,
@@ -16,14 +16,14 @@ let app = new Vue({
         modalOpen: false
     },
     methods: {
-        escapeKeyListener: function(evt) {
+        escapeKeyListener(evt) {
             if (evt.keyCode === 27 && this.modalOpen) {
                 this.modalOpen = false;
             }
         }
     },
     watch: {
-        modalOpen: function () {
+        modalOpen() {
             let className = 'modal-open';
             if (this.modalOpen) {
                 document.body.classList.add(className);
@@ -32,10 +32,10 @@ let app = new Vue({
             }
         }
     },
-    created: function () {
+    created() {
         document.addEventListener('keyup', this.escapeKeyListener);
     },
-    destroyed: function () {
+    destroyed() {
         document.removeEventListener('keyup', this.escapeKeyListener);
     }
 });
