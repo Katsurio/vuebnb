@@ -1,13 +1,15 @@
 //import "core-js/fn/object/assign";
 import Vue from 'vue';
+import { populateAmenitiesAndPrices} from "./helpers";
 
 let model = JSON.parse(window.vuebnb_listing_model);
+model = populateAmenitiesAndPrices(model);
 
 let app = new Vue({
     el: '#app',
     data: Object.assign(model,{
         headerImageStyle: {
-            'background-image': 'url(/images/header.jpg)'
+            'background-image': `url(${model.images[0]})`
         },
         contracted: true,
         modalOpen: false
@@ -26,7 +28,7 @@ let app = new Vue({
                 document.body.classList.add(className);
             } else {
                 document.body.classList.remove(className);
-            }
+            }ßß
         }
     },
     created() {
