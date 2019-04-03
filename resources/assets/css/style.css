@@ -201,10 +201,6 @@ button {
     position: relative;
 }
 
-.image-carousel img {
-    max-width: 100%;
-}
-
 body.modal-open {
     overflow: hidden;
     position: fixed;
@@ -225,22 +221,6 @@ body.modal-open {
     z-index: 10000;
     font-weight: 100;
     line-height: 1;
-}
-
-.image-carousel {
-    height: 100%;
-    margin-top: -12vh;
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.image-carousel .controls {
-    position: absolute;
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
 }
 
 .carousel-control {
