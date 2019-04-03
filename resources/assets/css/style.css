@@ -222,15 +222,3 @@ body.modal-open {
     font-weight: 100;
     line-height: 1;
 }
-
-.carousel-control {
-    padding: 1rem;
-    color: #ffffff;
-    opacity: 0.85;
-}
-
-@media (min-width: 744px) {
-    .carousel-control {
-        font-size: 3rem;
-    }
-}
