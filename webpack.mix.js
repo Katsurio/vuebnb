@@ -24,4 +24,14 @@ mix.js('resources/assets/js/app.js', 'public/js')
     .browserSync({
             proxy: process.env.APP_URL,
             open: false
+    })
+    .options({
+        extractVueStyles: 'public/css/vue-style.css'
+    })
+    .webpackConfig({
+        resolve: {
+            alias: {
+                'vue$': 'vue/dist/vue.runtime.esm.js'
+            }
+        }
     });
