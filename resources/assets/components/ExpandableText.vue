@@ -1,7 +1,8 @@
 <template>
     <div>
-        <p :class="{ contracted: contracted }">@{{ about }}</p>
-        <slot></slot>
+        <p :class="{ contracted: contracted }">
+            <slot></slot>
+        </p>
         <button v-if="contracted" class="more" :click="contracted = false">
             + More
         </button>
