@@ -1,3 +1,7 @@
+html, body {
+    overflow-x: hidden;
+}
+
 body {
     font-family: 'Open Sans', sans-serif;
     color: #484848;
@@ -41,14 +45,3 @@ button {
     display: inline-block;
     margin-bottom: 0;
 }
-
-button {
-    text-align: center;
-    vertical-align: middle;
-    user-select: none;
-    white-space: nowrap;
-    cursor: pointer;
-    display: inline-block;
-    margin-bottom:  0;
-}
-
