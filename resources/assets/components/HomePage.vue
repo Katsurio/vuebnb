@@ -13,20 +13,56 @@
     </div>
 </template>
 <script>
+    import routeMixin from '../js/route-mixin';
     import { groupByCountry} from "../js/helpers";
     import ListingSummary from './ListingSummary';
 
     let serverData = JSON.parse(window.vuebnb_server_data);
     let listing_groups = groupByCountry(serverData.listings);
 
+    import axios from 'axios';
+
+    function getData(to) {
+        return new Promise((resolve) => {
+            let serverData = JSON.parse(window.vuebnb_server_data);
+            if (!serverData.path || to.path !== serverData.path) {
+                axios.get(`/api${to.path}`).then(({ data }) => {
+                    resolve(data);
+                });
+            } else {
+                resolve(serverData);
+            }
+        });
+    }
+
     export default {
+        mixins: [ routeMixin ],
         data() {
-            return { listing_groups}
+            return {
+                listing_groups: []
+            };
+        },
+        methods: {
+            assignData({ listings }) {
+                this.listing_groups = groupByCountry(listings);
+            }
         },
         components: {
             ListingSummary
+        },
+        beforeRouteEnter(to, from, next) {
+            let serverData = JSON.parse(window.vuebnb_server_data);
+            if (to.path === serverData.path) {
+                let listing_groups = groupByCountry(serverData.listings);
+                next(component => component.listing_groups = listing_groups);
+            } else {
+                axios.get(`/api/`).then(({ data }) => {
+                    let listing_groups = groupByCountry(data.listings);
+                    next(component => component.listing_groups = listing_groups);
+                })
+            }
         }
-    }
+    };
 </script>
 <style>
     .home-container {

@@ -11,9 +11,7 @@ class ListingController extends Controller
     {
         $model = $listing->toArray();
         for ($i = 1; $i <= 4; $i++) {
-            $model['image_' . $i] = asset(
-                'images/' . $listing->id . '/Image_' . $i . '.jpg'
-            );
+            $model['image_' . $i] = asset('images/' . $listing->id . '/Image_' . $i . '.jpg');
         }
         return collect(['listing' => $model]);
     }
@@ -24,24 +22,44 @@ class ListingController extends Controller
         return response()->json($data);
     }
 
-    public function get_listing_web(Listing $listing)
+    public function add_meta_data($collection, $request)
+    {
+        return $collection->merge([
+            'path' => $request->getPathInfo()
+        ]);
+    }
+
+    public function get_listing_web(Listing $listing, Request $request)
     {
         $data = $this->get_listing($listing);
+        $data = $this->get_meta_data($listing, $request);
         return view('app', ['data' => $data]);
     }
 
-    public function get_home_web(Listing $listing)
+    private function get_listing_summaries()
     {
         $collection = Listing::all([
             'id', 'address', 'title', 'price_per_night'
         ]);
-        $collection->transform(function ($listing) {
+        $collection->transform(function($listing) {
             $listing->thumb = asset(
                 'images/' . $listing->id . '/Image_1_thumb.jpg'
             );
             return $listing;
         });
-        $data = collect(['listings' => $collection->toArray()]);
+        return collect(['listings' => $collection->toArray()]);
+    }
+
+    public function get_home_web(Request $request)
+    {
+        $data = $this->get_listing_summaries();
+        $data = $this->add_meta_data($data, $request);
         return view('app', ['data' => $data]);
+    }
+
+    public function get_home_api()
+    {
+        $data = $this->get_listing_summaries();
+        return response()->json($data);
     }
 }
